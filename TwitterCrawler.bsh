@@ -1,0 +1,23 @@
+input_start=2020-06-05
+input_end=2020-06-14
+
+startdate=$(date -I -d "$input_start") || exit -1
+enddate=$(date -I -d "$input_end")     || exit -1
+
+d="$startdate"
+while [ "$d" != "$enddate" ]; do 
+
+  t=$(date -I -d "$d + 1 day")
+  echo "twitterscraper \"#COVID2019 OR #COVID19 OR corona&virus\" -bd $d -ed $t -o covid2019_$d.json"
+  
+
+  x-terminal-emulator -hold -e "twitterscraper \"#COVID2019 OR #COVID19 OR corona&virus\" -bd $d -ed $t -o covid2019_$d.json" &
+
+
+  
+
+
+  d=$(date -I -d "$d + 1 day")
+  echo "--------------------------------------------------------------------------------------"
+
+done
